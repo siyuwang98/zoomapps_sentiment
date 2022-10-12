@@ -73,6 +73,7 @@ const headers = {
             'connect-src': ["'self'", `wss://${redirectHost}`],
             'base-uri': 'self',
             'form-action': 'self',
+            // 'child-src': ['https://www.youtube.com/embed/tgbNymZ7vqY']
         },
     },
 };

@@ -38,13 +38,13 @@ const custColorInp = document.getElementById('custColorInp');
 
 // Cast selection
 const castSel = document.getElementById('castSel');
-const setCastBtn = document.getElementById('setCastBtn');
+// const setCastBtn = document.getElementById('setCastBtn');
 
 const helpMsg = document.getElementById('helpMsg');
 
 // Topic Selection
-const topicBtn = document.getElementById('topicBtn');
-const topicInp = document.getElementById('topicInp');
+// const topicBtn = document.getElementById('topicBtn');
+// const topicInp = document.getElementById('topicInp');
 const topicList = document.getElementById('topicList');
 
 /**
@@ -295,7 +295,7 @@ function showElements() {
  * Create an anchor tag and insert it into the topic list
  * @param {String} text - text of the new topic
  */
-function createTopic(text) {
+/*function createTopic(text) {
     const a = document.createElement('a');
     a.classList.add(classes.panel);
 
@@ -326,6 +326,7 @@ function createTopic(text) {
 
     topicList.appendChild(a);
 }
+*/
 
 /**
  * Sets the default topic to be drawn
@@ -402,7 +403,7 @@ app.sdk.onParticipantChange(async ({ participants }) => {
 
 app.sdk.onMessage(async ({ payload }) => {
     const {
-        addTopic,
+        // addTopic,
         color,
         updateCast,
         ended,
@@ -459,23 +460,17 @@ app.sdk.onMessage(async ({ payload }) => {
     // sync the UI color
     if (color) {
         const idx = Object.values(colors).indexOf(color);
-        const isCustom = idx === -1;
 
         settings.color = color;
 
-        if (isCustom) {
-            custColorInp.value = color;
-            colorSel.setAttribute('disabled', '');
-        } else {
-            colorSel.removeAttribute('disabled');
-            colorSel.value = Object.keys(colors)[idx];
-        }
+        colorSel.removeAttribute('disabled');
+        colorSel.value = Object.keys(colors)[idx];
 
         if (app.isImmersive) await render();
     }
 
     // sync a new topic
-    if (addTopic) createTopic(addTopic);
+    // if (addTopic) createTopic(addTopic);
 
     // set the default topic
     if (activeTopic) {
@@ -506,7 +501,7 @@ colorSel.onchange = async (e) => {
     });
 };
 
-custColorInp.onchange = async (e) => {
+/* custColorInp.onchange = async (e) => {
     const { value } = e.target;
     if (value.length > 0) {
         settings.color = value;
@@ -524,9 +519,9 @@ custColorInp.onchange = async (e) => {
                 meetingUUID: settings.uuid,
             });
     } else colorSel.removeAttribute('disabled');
-};
+}; */
 
-topicBtn.onclick = async () => {
+/* topicBtn.onclick = async () => {
     const topic = topicInp.value;
 
     if (!topic) return;
@@ -535,9 +530,9 @@ topicBtn.onclick = async () => {
 
     // sync the new topic with the Zoom Client
     await app.sdk.postMessage({ addTopic: topic });
-};
+}; */
 
-setCastBtn.onclick = async () => {
+/* setCastBtn.onclick = async () => {
     const selected = castSel.querySelectorAll('option:checked');
     const hasUI = app.drawnImages.length > 0;
 
@@ -570,7 +565,7 @@ setCastBtn.onclick = async () => {
         color: settings.color,
         meetingUUID: settings.uuid,
     });
-};
+}; */
 
 window.onresize = debounce(render, 1000);
 

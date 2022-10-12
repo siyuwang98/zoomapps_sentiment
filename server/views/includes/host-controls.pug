@@ -3,26 +3,18 @@
         .column
             .columns
                 .column
-                    label.label(for='topicInp') Add a Topic
+                    label.label(for='topicInp') Stream Source
                     .field.has-addons
                         .control.is-expanded
-                            input.input#topicInp(type='text' name='topicInp' placeholder='Add a Topic')
+                            input.input#topicInp(type='text' name='topicInp' placeholder='Stream Source')
                         .control
                             a.button#topicBtn
-                                | Add
-            .columns
-                .column
-                    .field
-                        label.label(for='topicList') Topics
-                        .control
-                            article.panel.has-background-white#topicList
+                                | Confirm
+        .column
+            iframe(width="250", height="150", src="//www.youtube.com/embed/tgbNymZ7vqY")
         .column
             .field
                 label.label(for='castSel') Select up to 3 Participants:&nbsp
                 .control
                     .select.is-multiple.is-fullwidth
                         select#castSel(multiple name='castSel' )
-    .columns
-        .column
-            .control
-                button.button.is-primary#setCastBtn Start Session
